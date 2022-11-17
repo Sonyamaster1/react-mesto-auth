@@ -1,0 +1,15 @@
+.element__text {
+  background-color: #fff;
+  color: black;
+  border-radius: 0 0 10px 10px;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+@media (max-width:320px) {
+.element__text{
+  max-width: 282px;
+}
+}

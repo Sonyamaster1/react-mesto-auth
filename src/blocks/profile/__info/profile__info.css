@@ -1,0 +1,16 @@
+.profile__info {
+  max-width: 366px;
+}
+@media (max-width: 820px){
+  .profile__info {
+    grid-area: info;
+    margin: 0 auto;
+    margin-bottom: 50px;
+  }
+}
+@media (max-width: 320px){
+  .profile__info {
+    width: 100%;
+    margin-bottom: 36px;
+  }
+}
