@@ -176,15 +176,15 @@ function App() {
       .registerUser(email, password)
       .then((data) => {
         if (data) {
-          setIsInfoTolltipSuccess(true);
+          setIsInfoTolltipSuccess(true); // успешный вход
           history.push("/sing-in"); // переюрасываем на вход
         }
       })
       .catch((err) => {
-        setIsInfoTolltipSuccess(false);
+        setIsInfoTolltipSuccess(false); // fail
         console.log(err);
       })
-      .finally(() => setIsSuccessPopupOpen(true));
+      .finally(() => setIsSuccessPopupOpen(true)); // в любом случае открываем попап
   }
 
   // аутентификация пользователя
@@ -193,15 +193,15 @@ function App() {
       .loginUser(email, password)
       .then((data) => {
         if (data.token) {
-          setHeaderEmail(email);
-          setIsLoggedIn(true);
+          setHeaderEmail(email); // передаем почту
+          setIsLoggedIn(true); // войдено
           localStorage.setItem("jwt", data.token);
           history.push("/"); // перебрасываем в профиль
         }
       })
       .catch((err) => {
-        setIsInfoTolltipSuccess(false);
-        setIsSuccessPopupOpen(true);
+        setIsInfoTolltipSuccess(false); // fail
+        setIsSuccessPopupOpen(true); // в любом случае открываем попап
         console.log(err);
       });
   }
@@ -213,7 +213,7 @@ function App() {
         .checkToken(jwt)
         .then((data) => {
           if (data) {
-            setIsLoggedIn(true);
+            setIsLoggedIn(true); // войдено
             setHeaderEmail(data.data.email); // получаем почту
             history.push("/"); // перебрасываем в профиль
           }
@@ -224,8 +224,8 @@ function App() {
   // удаляем токен
   function handleSingOut() {
     localStorage.removeItem("jwt");
-    setHeaderEmail("");
-    setIsLoggedIn(false);
+    setHeaderEmail(""); // очищаем почту
+    setIsLoggedIn(false); // не войдено
     history.push("/sign-in"); // перебрасываем на вход
   }
   return (
