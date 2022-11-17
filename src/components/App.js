@@ -45,6 +45,8 @@ function App() {
   const history = useHistory();
   // email
   const [hederEmail, setHeaderEmail] = React.useState("");
+  // текст кнопки
+  const [isLoading, setIsLoading] = React.useState(false);
 
   // попап редактирования
   function handleEditProfileClick() {
@@ -125,7 +127,9 @@ function App() {
         setCurrentUser(newUser);
         closeAllPopups();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setIsLoading(false));
+    setIsLoading(true);
   }
   // update avatar
   function handleUpdateAvatar(data) {
@@ -135,7 +139,9 @@ function App() {
         setCurrentUser(newAvatar);
         closeAllPopups();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setIsLoading(false));
+    setIsLoading(true);
   }
   // update cards
   function handleAddPlaceSubmit(data) {
@@ -145,7 +151,9 @@ function App() {
         setCards([newCard, ...cards]);
         closeAllPopups();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setIsLoading(false));
+    setIsLoading(true);
   }
   // закрытие по esc
   const isOpen =
@@ -263,16 +271,19 @@ function App() {
             isOpen={isAddPlacePopupOpen}
             onClose={closeAllPopups}
             onSubmit={handleAddPlaceSubmit}
+            isLoading={isLoading}
           />
           <EditProfilePopup
             isOpen={isEditProfilePopupOpen}
             onClose={closeAllPopups}
             onUpdateAvatar={handleUpdateUser}
+            isLoading={isLoading}
           />
           <EditAvatarPopup
             isOpen={isEditAvatarPopupOpen}
             onClose={closeAllPopups}
             onUpdateAvatar={handleUpdateAvatar}
+            isLoading={isLoading}
           />
           <PopupWithForm
             isOpen={isDeletePopupOpen}

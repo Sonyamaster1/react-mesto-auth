@@ -1,7 +1,7 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
-function AddPlacePopup({ onSubmit, isOpen, onClose }) {
+function AddPlacePopup({ onSubmit, isOpen, onClose, isLoading }) {
   const [name, setName] = React.useState("");
   const [link, setLink] = React.useState("");
   // input change
@@ -31,7 +31,7 @@ function AddPlacePopup({ onSubmit, isOpen, onClose }) {
       isOpen={isOpen}
       onClose={onClose}
       title={"Новое место"}
-      buttonText={"Создать"}
+      buttonText={isLoading ? "Сохранение..." : "Создать"}
       name={"cards"}
       form={"cards-form"}
       onSubmit={handleSubmit}
